@@ -63,6 +63,18 @@ describe('First Test Suite', () => {
 
     cy.get('#page-login__button-login').click();
 
+    cy.get('[class="ButtonKeranjangQbee_add-to-cart__H_haT"]', { timeout: 10000 }) // Adjust the selector to match your button
+      .should('have.length.greaterThan', 4) // Ensure there are buttons to click
+      .then(($buttons) => {
+        // Loop through each button using its index
+        for (let i = 0; i < 4; i++) {
+          cy.wrap($buttons[i]).click({ force: true });
+        }
+      });
+
+      cy.get('[class="chakra-text flexiComboModal_title__4sbhL css-0"]');
+      cy.get('button[type="button"]').click();
+
     });
   });
 
