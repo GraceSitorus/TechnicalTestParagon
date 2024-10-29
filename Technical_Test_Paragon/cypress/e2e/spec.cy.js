@@ -72,8 +72,15 @@ describe('First Test Suite', () => {
         }
       });
 
-      cy.get('[class="chakra-text flexiComboModal_title__4sbhL css-0"]');
-      cy.get('button[type="button"]').click();
+    cy.get('[class="css-0"]');
+
+    cy.get('[class="chakra-button css-nzwdbq"]', { timeout: 10000 }) // Adjust the selector to match your button
+      .should('have.length.greaterThan', 4) // Ensure there are buttons to click
+      .then(($buttons) => {
+        for (let i = 0; i < 5; i++) {
+          cy.wrap($buttons[i]).click({ force: true });
+        }
+      });
 
     });
   });
