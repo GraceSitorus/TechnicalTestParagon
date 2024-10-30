@@ -74,7 +74,7 @@ describe('First Test Suite', () => {
 
     cy.get('[class="css-0"]');
 
-    cy.get('[class="chakra-button css-nzwdbq"]') // Adjust the selector to match your button
+    cy.get('[class="chakra-button css-nzwdbq"]', { timeout: 10000 }) // Adjust the selector to match your button
       .should('have.length.greaterThan', 4) // Ensure there are buttons to click
       .then(($buttons) => {
         for (let i = 0; i < 5; i++) {
@@ -90,9 +90,13 @@ describe('First Test Suite', () => {
     cy.get('[class="chakra-button styles_cookies-button__mJJow css-izbdsk"]').click();
     cy.get('[class="chakra-button css-1pilj7v"]').click();
     cy.get('[class="css-70qvj9"]');
-    cy.get('[class="pickDelivery_pickDelivery-desc__RjCK9"]').click();
+    cy.get('[class="pickDelivery_pickDelivery-upper__gRRQ_"]').click();
     cy.get('header[class="chakra-modal__header pickDelivery_modal-header__zFWlk css-9fgtzh"]');
     
+    cy.get('[class="chakra-modal__body pickDelivery_modal-body__PT2dA css-qlig70"]').find('[type="radio"]').then( radioButtons =>{
+      cy.wrap(radioButtons).eq(1).check({force: true});
+
+    });
     });
   });
 
