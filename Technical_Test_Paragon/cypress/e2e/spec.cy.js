@@ -82,10 +82,19 @@ describe('First Test Suite', () => {
         }
       });
 
+      cy.get('[class="chakra-button css-b74w8"]', { timeout: 10000 }) // Adjust the selector to match your button
+      .should('have.length.greaterThan', 4) // Ensure there are buttons to click
+      .then(($buttons) => {
+        for (let i = 0; i < 2; i++) {
+          cy.wrap($buttons[i]).click({ force: true });
+        }
+      });
+
     cy.wait(10000);
     cy.get('body').click(0, 0);
     cy.get('#chakra-modal-1').should('not.exist');
 
+    
     cy.get('[class="HeaderQbee_total-cart__Acy0A"]').click();
     cy.get('[class="chakra-button styles_cookies-button__mJJow css-izbdsk"]').click();
     cy.get('[class="chakra-button css-1pilj7v"]').click();
@@ -95,8 +104,16 @@ describe('First Test Suite', () => {
     
     cy.get('[class="chakra-modal__body pickDelivery_modal-body__PT2dA css-qlig70"]').find('[type="radio"]').then( radioButtons =>{
       cy.wrap(radioButtons).eq(1).check({force: true});
+    });
+
+    cy.get('header[class="chakra-modal__header pickCourier_modal-header__P3hOV css-9fgtzh"]');
+
+    cy.get('[class="pickCourier_title-content__dZgUS css-0"]').find('[type="radio"]').then( radioButtons =>{
+      cy.wrap(radioButtons).eq(0).check({force: true});
 
     });
+
+    cy.get('[class="chakra-button checkoutSummary_checkout-btn__eCqC8 css-1kmr4oq"]').click();
     });
   });
 
